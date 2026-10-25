@@ -1,0 +1,2 @@
+{"type":"custom-title","customTitle":"A subagent, not a session","sessionId":"aaaa1111"}
+{"type":"user","timestamp":"2026-10-21T09:10:00.000Z","cwd":"G:\\proj\\alpha","sessionId":"aaaa1111","message":{"role":"user","content":"sub task"}}

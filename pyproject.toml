@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=77"]   # 77 reads the licence as an SPDX string
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wayfinder-board"
+version = "0.1.0"
+description = "A desktop board over Efforts on disk."
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = ["customtkinter==6.0.0"]   # the one dependency, pinned
+
+[project.scripts]
+wayfinder-board = "src.__main__:main"
+
+# The package stays named `src` (ticket 01): pipx gives each install its own environment.
+[tool.setuptools]
+packages = ["src", "src.model", "src.views"]
+
+[tool.setuptools.package-data]
+src = ["palettes/*.json"]

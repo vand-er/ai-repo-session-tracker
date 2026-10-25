@@ -1,0 +1,5 @@
+{"type":"custom-title","customTitle":"Beta chores","sessionId":"bbbb2222"}
+{"type":"user","timestamp":"2026-10-21T08:50:00.000Z","cwd":"/home/dev/proj/beta","sessionId":"bbbb2222","message":{"role":"user","content":[{"type":"text","text":"Tidy the README, nothing tracked here."}]}}
+{"type":"assistant","timestamp":"2026-10-21T08:50:04.000Z","cwd":"/home/dev/proj/beta","sessionId":"bbbb2222","message":{"role":"assistant","model":"claude-haiku-4-5","content":[{"type":"text","text":"Which section?"}]}}
+{"type":"user","timestamp":"2026-10-21T08:55:00.000Z","cwd":"/home/dev/proj/beta","sessionId":"bbbb2222","message":{"role":"user","content":"The install section."}}
+{"type":"last-prompt","lastPrompt":"The install section.","sessionId":"bbbb2222"}

@@ -1,0 +1,37 @@
+{
+  "bg": "#1a1220",
+  "bg_panel": "#21182a",
+  "bg_raised": "#2d2138",
+  "bg_select": "#44315c",
+  "line": "#3a2c48",
+  "text": "#ece0f2",
+  "text_dim": "#706080",
+  "text_muted": "#b4a3c2",
+  "accent": "#ff79c6",
+  "flash": "#5a4a1e",
+  "badge_text": "#1a1220",
+  "stalled": "#ff4040",
+  "family": {
+    "Needs me": "#f1fa8c",
+    "Waiting": "#bd93f9",
+    "Ready": "#8be9fd",
+    "Active": "#ffb86c",
+    "Finished": "#bcf042",
+    "Done": "#50fa7b",
+    "Dropped": "#857894",
+    "Unknown": "#ff5555"
+  },
+  "font_mono": ["Cascadia Mono", "Consolas", "Menlo", "Monaco", "DejaVu Sans Mono", "Liberation Mono", "Noto Sans Mono"],
+  "font_ui": ["Segoe UI", "Helvetica Neue", "Noto Sans", "DejaVu Sans", "Cantarell", "Liberation Sans"],
+  "size": {
+    "table_dense": 13,
+    "table_airy": 14,
+    "detail": 13,
+    "readout": 13,
+    "ui": 12,
+    "section": 11,
+    "detail_title": 16,
+    "header_title": 18,
+    "card_title": 20
+  }
+}

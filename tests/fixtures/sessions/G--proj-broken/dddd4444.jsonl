@@ -1,0 +1,5 @@
+this is not json
+{"type":"user","timestamp":
+[1, 2, 3]
+"just a string"
+{"type":"assistant","message":"not an object"}

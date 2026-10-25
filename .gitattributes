@@ -1,0 +1,3 @@
+* text=auto eol=lf
+# cmd.exe reads batch files most safely with CRLF; git still stores them with LF.
+*.bat text eol=crlf

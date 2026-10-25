@@ -1,0 +1,3 @@
+{"type":"custom-title","customTitle":"Yesterday's work","sessionId":"cccc3333"}
+{"type":"user","timestamp":"2026-10-20T08:00:00.000Z","cwd":"G:\\proj\\old","sessionId":"cccc3333","message":{"role":"user","content":"/wayfinder G:\\x\\.scratch\\e\\map.md"}}
+{"type":"assistant","timestamp":"2026-10-20T08:00:04.000Z","cwd":"G:\\proj\\old","sessionId":"cccc3333","message":{"role":"assistant","model":"claude-opus-5-5","content":[{"type":"text","text":"Hi."}]}}

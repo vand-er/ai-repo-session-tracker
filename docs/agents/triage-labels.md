@@ -1,0 +1,13 @@
+# Triage labels
+
+A Ticket's triage state is its `Status:` line. Matt Pocock's skills (<https://github.com/mattpocock/skills>) speak of five triage roles; this file maps each to the label string this repo writes. Without the skills, write the label yourself.
+
+| Role in the skills | Label in this tracker | Meaning                                  |
+| ------------------ | --------------------- | ---------------------------------------- |
+| `needs-triage`     | `needs-triage`        | Maintainer needs to evaluate this issue  |
+| `needs-info`       | `needs-info`          | Waiting on reporter for more information |
+| `ready-for-agent`  | `ready-for-agent`     | Fully specified, ready for an AFK agent  |
+| `ready-for-human`  | `ready-for-human`     | Requires human implementation            |
+| `wontfix`          | `wontfix`             | Will not be actioned                     |
+
+When a skill mentions a role (e.g. "apply the AFK-ready triage label"), write the matching label from this table.
