@@ -34,7 +34,7 @@ class PollTest(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
-        root = Path(tmp.name)
+        root = Path(tmp.name).resolve()   # as a tab's folder is (8.3 names, /var on macOS)
         self.folder = root / "retro"
         shutil.copytree(FIXTURE, self.folder)
         self.ticket = next((self.folder / "issues").glob("02-*.md"))
@@ -160,7 +160,7 @@ class ProgressPollTest(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
-        root = Path(tmp.name)
+        root = Path(tmp.name).resolve()   # as a tab's folder is (8.3 names, /var on macOS)
         self.folder = root / "marks"
         shutil.copytree(FIXTURE.parent / "progress-marks", self.folder)
         self.progress = self.folder / "progress.md"

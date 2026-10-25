@@ -4,6 +4,7 @@ not in a git repo at all, since git is optional. Driven through `scan` of throwa
 repos made in temp folders, as the main-Landed tests are."""
 
 import os
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -36,8 +37,10 @@ class MainErrorTest(RepoTestCase):
         self.assertEqual(scan(self.repo).main.error, "git failed")
 
     def test_git_running_past_its_time_limit_gives_timed_out(self):
-        # No git process starts and finishes within a millisecond.
-        with mock.patch("src.model.main_branch.GIT_TIMEOUT", 0.001):
+        # git hits its time limit: on a fast machine a real one can finish within any
+        # limit short enough for a test, so the limit's own error stands in for it.
+        expired = subprocess.TimeoutExpired("git", 0.001)
+        with mock.patch("src.model.main_branch.subprocess.run", side_effect=expired):
             snapshot = scan(self.repo)
         self.assertEqual(snapshot.main.error, "timed out")
 

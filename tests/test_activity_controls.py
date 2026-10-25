@@ -29,7 +29,9 @@ class ActivityControlsTest(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
-        root = Path(tmp.name)
+        # Resolved, as a tab's folder is: a temp folder can hold an 8.3 short name or a
+        # symlink (/var on macOS), and the transcripts must name the Tickets' own paths.
+        root = Path(tmp.name).resolve()
         repo = root / "repo"
         effort = repo / ".scratch" / "retro"
         shutil.copytree(FIXTURE, effort)

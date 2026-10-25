@@ -6,7 +6,7 @@ seam, `scan_builders` over the builders fixture, a copy of the real layout
 import os
 import unittest
 from datetime import datetime, timedelta, timezone
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 
 from src.model.builders import match_builders, scan_builders
 from src.model.sessions import scan_sessions
@@ -20,7 +20,9 @@ SOLO = PROJECTS / "G--repo" / "solo2222.jsonl"
 SUBAGENTS = PROJECTS / "G--repo" / "orch1111" / "subagents"
 NOW = datetime(2026, 10, 21, 9, 15, tzinfo=timezone.utc)
 WINDOW = timedelta(minutes=30)
-SHOP = Path("G:\\repo\\.scratch\\shop")
+# The builders fixture's prompts are a Windows machine's, so its Tickets' paths are Windows
+# paths and they are matched as Windows matches them, on every system the suite runs on.
+SHOP = PureWindowsPath("G:\\repo\\.scratch\\shop")
 
 
 def set_mtime(path, when):
@@ -50,7 +52,7 @@ def scan(previous=()):
 class SubagentBuildersTest(unittest.TestCase):
     def setUp(self):
         fresh_fixture()
-        self.builder_for = match_builders(scan())
+        self.builder_for = match_builders(scan(), windows=True)
 
     def test_metadata_naming_build_ticket_11_gives_a_builder_for_ticket_11(self):
         builder = self.builder_for(ticket("11", "cart"))
@@ -60,7 +62,7 @@ class SubagentBuildersTest(unittest.TestCase):
         self.assertEqual(builder.session, ORCH)
 
     def test_ticket_11_of_another_effort_has_no_builder(self):
-        self.assertIsNone(self.builder_for(ticket("11", "cart", Path("G:\\other\\.scratch\\shop"))))
+        self.assertIsNone(self.builder_for(ticket("11", "cart", PureWindowsPath("G:\\other\\.scratch\\shop"))))
 
     def test_a_subagent_naming_no_ticket_is_a_builder_on_no_ticket(self):
         builders = scan()
@@ -82,7 +84,7 @@ class ActivityTest(unittest.TestCase):
 
     def setUp(self):
         fresh_fixture()
-        self.builder_for = match_builders(scan())
+        self.builder_for = match_builders(scan(), windows=True)
 
     def activity(self, number, slug, now=NOW):
         builder = self.builder_for(ticket(number, slug))
@@ -125,7 +127,7 @@ class LastMessageTest(unittest.TestCase):
 
     def setUp(self):
         fresh_fixture()
-        self.builder_for = match_builders(scan())
+        self.builder_for = match_builders(scan(), windows=True)
 
     def test_the_most_recent_assistant_text_is_the_last_message(self):
         builder = self.builder_for(ticket("12", "checkout"))
@@ -193,10 +195,10 @@ class TailOnlyTest(unittest.TestCase):
             return handle
         with mock.patch.object(builtins, "open", spying_open):
             builders = scan_builders(projects, NOW, WINDOW)
-        big = Ticket(path=Path("G:\\big\\.scratch\\e\\issues\\03-big.md"), number="03",
-                     title="", status="", family="Ready", type="", area="", blockers=(),
-                     mtime=0.0, parsed=True)
-        builder = match_builders(builders)(big)
+        big = Ticket(path=PureWindowsPath("G:\\big\\.scratch\\e\\issues\\03-big.md"),
+                     number="03", title="", status="", family="Ready", type="", area="",
+                     blockers=(), mtime=0.0, parsed=True)
+        builder = match_builders(builders, windows=True)(big)
         self.assertEqual(builder.activity.text(NOW), "Reading main.gd · 2s")
         self.assertLessEqual(read["bytes"], 256 * 1024)
         self.assertGreater(size, 30 * read["bytes"])

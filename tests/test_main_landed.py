@@ -76,6 +76,11 @@ class RepoTestCase(unittest.TestCase):
         self.repo.mkdir()
         self.tips = {}
         self.clock = int(time.time()) + 3600   # commits made after the test's Efforts
+        # The Efforts' creation time is the operating system's to give, and Linux gives
+        # none; here every Effort was made now, on every system (UnknownBirthTest: none).
+        patcher = mock.patch("src.model.main_branch._born", return_value=time.time())
+        patcher.start()
+        self.addCleanup(patcher.stop)
         git(self.repo, "init", "-q", "-b", "main")
         write_object(self.repo / ".git", b"tree", b"")
         self.commit("Start")

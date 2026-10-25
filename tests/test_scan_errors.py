@@ -35,7 +35,7 @@ class ScanErrorTest(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
-        self.root = Path(tmp.name)
+        self.root = Path(tmp.name).resolve()   # as a tab's folder is (8.3 names, /var on macOS)
         self.folder = self.root / "retro"
         shutil.copytree(FIXTURE, self.folder)
         self.ws_file = write_workspace(self.root / "ws.json", self.root / "projects")
